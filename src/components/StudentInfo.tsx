@@ -11,7 +11,14 @@ import {
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
-
+import { 
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 
 
@@ -23,10 +30,10 @@ export function StudentInfo() {
         <DrawerTrigger render={<Button>Thanakrit Laosuabsakulthai</Button>} />
         <DrawerContent>
           <DrawerHeader>
-            <DrawerTitle>ข้อมูลนักศึกษา</DrawerTitle>
+            <DrawerTitle className="text-xl" >ข้อมูลนักศึกษา</DrawerTitle>
             <DrawerDescription>Student information</DrawerDescription>
           </DrawerHeader>
-          <div className="flex-1 p-4">
+          {/* <div className="flex-1 p-4">
             <div className="size-full rounded-2xl bg-muted">
             <img
               src="../../public/portrait.png"
@@ -54,7 +61,46 @@ export function StudentInfo() {
           <div className="p-4 bg-muted mb-auto">
             <p className="text-sm">รหัสนักศึกษา 680610677</p>
           </div>
+          <div className="flex-1" /> */}
+          {/* use cards */}
+          <Card className="m-2 pt-0">
+            <div className="inset-0">
+              <img
+                src="../../public/portrait.png"
+                alt="Student"
+                className="object-cover"
+              />
+            </div>
+            <CardHeader>
+              <CardTitle>Thanakrit Laosuabsakulthai</CardTitle>
+              <CardDescription>นักศึกษาคณะวิศวกรรมศาสตร์ สาขาวิศวกรรมคอมพิวเตอร์ ชั้นปีที่ 2 มหาวิทยาลัยเชียงใหม่</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-1">
+                  <Badge variant="secondary">Hobbies</Badge>
+                  <span>เล่นเกม, ฟังเพลง, ดูหนัง, เขียนโปรแกรม</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Badge variant="secondary">Email</Badge>
+                  <span>thanakrit_la@cmu.ac.th</span>
+                </div>
+                <div className="flex items-center gap-1 break-all">
+                  <Badge variant="secondary">Social</Badge>
+                  <span>facebook.com/thanakrit.laosuabsakulthai</span>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <p className="text-sm">รหัสนักศึกษา 680610677</p>
+            </CardFooter>
+          </Card>
           <div className="flex-1" />
+          
+          
+          
+          
+          
           <DrawerFooter>
             <DrawerClose render={<Button>Close</Button>} />
           </DrawerFooter>
