@@ -23,6 +23,29 @@ export function CategoryCards() {
   const inventory = useItemStore((state) => state.inventory);
 
   return (
+    // <div className="grid gap-2 md:grid-cols-6">
+    //   {categoryOptions.map((category) => {
+    //     const categoryItems = inventory.filter(
+    //       (item) => item.category === category.value,
+    //     );
+    //     const categoryUnits = categoryItems.reduce(
+    //       (acc, item) => acc + item.quantity,
+    //       0,
+    //     );
+    //     const categoryValue = categoryItems.reduce(
+    //       (acc, item) => acc + item.quantity * item.price,
+    //       0,
+    //     );
+
+    //     return (
+    //       // Use Card component to display values by category
+    //       <div>
+    //         {category.label} - ฿{categoryValue.toFixed(2)} - {categoryUnits}{" "}
+    //         units
+    //       </div>
+    //     );
+    //   })}
+    // </div>
     <div className="grid gap-2 md:grid-cols-6">
       {categoryOptions.map((category) => {
         const categoryItems = inventory.filter(
@@ -36,13 +59,23 @@ export function CategoryCards() {
           (acc, item) => acc + item.quantity * item.price,
           0,
         );
-
+        
         return (
-          // Use Card component to display values by category
-          <div>
-            {category.label} - ฿{categoryValue.toFixed(2)} - {categoryUnits}{" "}
-            units
-          </div>
+          <Card key={category.value} className="border">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">
+                {iconMap[category.label]} {category.label}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="text-xl font-bold">
+                ฿{categoryValue.toFixed(2)}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                {categoryUnits} units
+              </div>
+            </CardContent>
+          </Card>
         );
       })}
     </div>

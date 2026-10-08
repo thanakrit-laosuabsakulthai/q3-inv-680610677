@@ -4,14 +4,18 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 export function OverviewCards() {
   const inventory = useItemStore((state) => state.inventory);
   const totalProducts = inventory.length;
-  return (
+  const totalStockValue = inventory.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const totalUnitsInStock = inventory.reduce((acc, item) => acc + item.quantity, 0);
+  
+  
+  return ( 
     <div className="grid gap-4 md:grid-cols-3">
       <Card>
         <CardHeader className="flex flex-row items-center justify-between pb-2">
           <CardTitle className="text-sm font-medium">Total Stock Value</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl text-red-500 font-bold">฿...</div>
+          <div className="text-2xl text-red-500 font-bold">฿{totalStockValue.toLocaleString()}</div>
         </CardContent>
       </Card>
       <Card>
@@ -27,7 +31,7 @@ export function OverviewCards() {
           <CardTitle className="text-sm font-medium">Total Units in Stock</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl text-green-700 font-bold">...</div>
+          <div className="text-2xl text-green-700 font-bold">{totalUnitsInStock}</div>
         </CardContent>
       </Card>
     </div>

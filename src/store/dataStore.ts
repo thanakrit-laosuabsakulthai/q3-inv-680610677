@@ -10,11 +10,12 @@ interface ItemState {
     price: number,
     category: InventoryItem["category"],
   ) => void;
+  removeInventoryItem: (id: string) => void;
   // deleteInventoryItem: (id: string) => void;
 }
 
 export const useItemStore = create<ItemState>()(
-  persist(
+  persist( 
     (set) => ({
       // Default initial items used only if localStorage is completely empty
       inventory: [
@@ -81,7 +82,11 @@ export const useItemStore = create<ItemState>()(
             ...state.inventory,
           ],
         })),
-
+      
+      removeInventoryItem: (id) =>
+        set((state) => ({
+          inventory: state.inventory.filter((item) => item.id !== id),
+        })),
     }),
     {
       // Unique key name for the localStorage entry
